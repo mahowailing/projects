@@ -4,30 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
-    <style>
-        .container {
-            width: 50%;
-            margin: 0 auto;
-            padding: 20px;
-            text-align: center;
-        }
-        input[type="text"], input[type="email"], input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            box-sizing: border-box;
-        }
-        button {
-            padding: 10px 20px;
-            background-color: blue;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: darkblue;
-        }
-    </style>
+    <link rel="stylesheet" href="sign.css">
 </head>
 <body>
     <div class="container">
@@ -39,67 +16,111 @@
             <label for="email">Email:</label><br>
             <input type="email" name="email" id="email" placeholder="Enter your email" required><br>
 
-            <!-- Password Rules -->
-            <span id="length-check" style="color:red; display: none;">Must be 8 characters</span>
-            <span id="uppercase-check" style="color:red; display: none;">Must have 1 uppercase letter</span>
-            <span id="number-check" style="color:red; display: none;">Must have 1 number</span>
-            <span id="special-char-check" style="color:red; display: none;">Must have 1 special character</span>
-
             <label for="password">Password:</label><br>
-            <input type="password" name="password" id="password" placeholder="Enter your password" required><br>
+            <div class="password-container">
+                <input type="password" name="password" id="password" placeholder="Enter your password" required>
+                <span class="toggle-password" onclick="togglePasswordVisibility()">👁️</span> <!-- Toggle Icon -->
+            </div>
+
+            <ul class="password-requirements" id="password-requirements">
+                <li id="length-check" class="invalid"><span class="icon">⚫</span> At least 8 characters length</li>
+                <li id="uppercase-check" class="invalid"><span class="icon">⚫</span> At least 1 uppercase letter (A...Z)</li>
+                <li id="number-check" class="invalid"><span class="icon">⚫</span> At least 1 number (0...9)</li>
+                <li id="special-char-check" class="invalid"><span class="icon">⚫</span> At least 1 special symbol (!...$)</li>
+            </ul>
 
             <label for="confirm_password">Confirm Password:</label><br>
             <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm your password" required><br>
+            <span id="mismatch-warning" class="mismatch-warning">Passwords do not match!</span>
 
             <button id="submit-btn" type="submit" disabled>Sign Up</button>
         </form>
 
         <p>Already have an account? <a href="index.php">Sign in here</a></p>
-
     </div>
-</body>
 
     <script>
-            function validatePassword() {
-            const password = document.getElementById('password').value;
+        const passwordInput = document.getElementById('password');
+        const confirmPasswordInput = document.getElementById('confirm_password');
+        const passwordRequirements = document.getElementById('password-requirements');
+        const mismatchWarning = document.getElementById('mismatch-warning');
+        const submitButton = document.getElementById('submit-btn');
 
-            // Define your regex parameters for each rule
+        function validatePassword() {
+            const password = passwordInput.value;
+
             const lengthCheck = /.{8,}/;
             const uppercaseCheck = /[A-Z]/;
             const numberCheck = /[0-9]/;
             const specialCharCheck = /[\W_]/;
 
-            // Check each rule and update the corresponding DOM elements
             updateFeedback('length-check', lengthCheck.test(password));
             updateFeedback('uppercase-check', uppercaseCheck.test(password));
             updateFeedback('number-check', numberCheck.test(password));
             updateFeedback('special-char-check', specialCharCheck.test(password));
 
-            // Enable or disable submit button based on whether all checks are true
-            const allValid = lengthCheck.test(password) && 
-                            uppercaseCheck.test(password) && 
-                            numberCheck.test(password) && 
+            const allValid = lengthCheck.test(password) &&
+                            uppercaseCheck.test(password) &&
+                            numberCheck.test(password) &&
                             specialCharCheck.test(password);
 
-            document.getElementById('submit-btn').disabled = !allValid;
+            validatePasswordMatch();  // Call to check if passwords match
+
+            submitButton.disabled = !allValid || confirmPasswordInput.value !== passwordInput.value;
         }
 
-        // Helper function to update the color of the feedback text
+        function validatePasswordMatch() {
+            const password = passwordInput.value;
+            const confirmPassword = confirmPasswordInput.value;
+
+            if (password !== confirmPassword && confirmPassword !== "") {
+                mismatchWarning.style.display = 'block'; // Show warning
+            } else {
+                mismatchWarning.style.display = 'none'; // Hide warning if they match
+            }
+        }
+
         function updateFeedback(elementId, isValid) {
-            document.getElementById(elementId).style.display = isValid ? 'none' : 'block';
+            const element = document.getElementById(elementId);
+            if (isValid) {
+                element.classList.add('valid');
+                element.classList.remove('invalid');
+                element.querySelector('.icon').textContent = '✔️';
+            } else {
+                element.classList.add('invalid');
+                element.classList.remove('valid');
+                element.querySelector('.icon').textContent = '⚫';
+            }
         }
 
-        function showPasswordRules() {
-        document.getElementById('length-check').style.display = 'block';
-        document.getElementById('uppercase-check').style.display = 'block';
-        document.getElementById('number-check').style.display = 'block';
-        document.getElementById('special-char-check').style.display = 'block';
-}
+        // Show password requirements when the user focuses on the password field
+        passwordInput.addEventListener('focus', () => {
+            passwordRequirements.classList.add('active');
+        });
 
-        // Add event listener to password input for real-time validation
-        document.getElementById('password').addEventListener('input', validatePassword);
+        // Hide password requirements when clicking on another field
+        document.querySelectorAll('input').forEach(inputField => {
+            inputField.addEventListener('focus', (e) => {
+                if (e.target !== passwordInput) {
+                    passwordRequirements.classList.remove('active');
+                }
+            });
+        });
 
-        // Add event listener to show the rules once user starts typing
-        document.getElementById('password').addEventListener('keydown', showPasswordRules);
+        // Validate password and match in real-time
+        passwordInput.addEventListener('input', validatePassword);
+        confirmPasswordInput.addEventListener('input', validatePasswordMatch);
+
+        // Toggle password visibility
+        function togglePasswordVisibility() {
+            const passwordField = document.getElementById('password');
+            const passwordFieldType = passwordField.getAttribute('type');
+            if (passwordFieldType === 'password') {
+                passwordField.setAttribute('type', 'text');
+            } else {
+                passwordField.setAttribute('type', 'password');
+            }
+        }
     </script>
+</body>
 </html>
