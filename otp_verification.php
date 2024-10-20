@@ -88,7 +88,7 @@ if (isset($_POST['send_otp'])) {
 <html>
 <head>
     <title>OTP Verification</title>
-    
+    <link rel="stylesheet" href="otp.css">
     <script>
         function sendOtp(event) {
             event.preventDefault(); // Prevent the form from submitting
@@ -112,6 +112,7 @@ if (isset($_POST['send_otp'])) {
     </script>
 </head>
 <body>
+    <div class="container">
     <h2>OTP Verification</h2>
     <form method="POST" action="verify_otp.php">
         <label for="otp">Enter OTP:</label>

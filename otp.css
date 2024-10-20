@@ -12,13 +12,6 @@
     --nav-font: "Poppins",  sans-serif;
   }
 
-  body {
-    font-family: var(--default-font);
-  }
-  
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--heading-font);
-  }
 
 body {
     display: flex;
@@ -38,13 +31,13 @@ body {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 400px;
+    margin-top: 10px;
 }
 
-h1 {
-    text-align: center;
-}
+
 
 h2 {
+    text-align: center;
     margin-bottom: 20px;
     font-size: 32px;
 }
@@ -53,12 +46,12 @@ p {
     text-align: center;
 }
 input[type="text"], input[type="email"], input[type="password"] {
-        margin-bottom: 20px;
-        padding: 10px;
-        font-size: 16px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        width: 100%;
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
 }
 button {
     padding: 10px 20px;
@@ -68,54 +61,9 @@ button {
     cursor: pointer;
     display: block;
     margin: 20px auto;
+
 }
 button:hover {
     background-color: #0056b3;
 }
 
-/* Password requirements box */
-.password-requirements {
-    display: none;
-    text-align: left;
-    margin-top: 5px;
-}
-.password-requirements.active {
-    display: block;
-}
-.password-requirements li {
-    list-style-type: none;
-    margin: 5px 0;
-}
-.password-requirements li .icon {
-    font-size: 18px;
-    margin-right: 10px;
-}
-.password-requirements li.valid .icon {
-    color: green;
-}
-.password-requirements li.invalid .icon {
-    color: red;
-}
-
-/* Style for the "view password" icon */
-.password-container {
-    position: relative;
-    width: 100%;
-}
-.password-container input {
-    width: 100%;
-}
-.password-container .toggle-password {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-}
-
-/* Style for "password mismatch" warning */
-.mismatch-warning {
-    color: red;
-    display: none;
-    font-size: 14px;
-}
