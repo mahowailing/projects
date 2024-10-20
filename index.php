@@ -15,7 +15,7 @@
 <body>
     <div class="container">
         <div class="image-section">
-            <img src="blue.jpg" alt="Sign In Image">
+            <img src="image1_0.jpg" alt="Sign In Image">
         </div>
         <div class="form-section">
             <h1>Sign In</h1>
