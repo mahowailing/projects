@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $password = $_POST['password'];
 
         // SQL query to fetch user with matching email and password
-        $sql = "SELECT * FROM users WHERE email = '$email' AND password = '$password'";
+        $sql = "SELECT * FROM users WHERE email LIKE '%$email%' AND password= '$password'";
         $result = mysqli_query($con, $sql);
 
         if ($result === false) {
@@ -16,9 +16,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         if (mysqli_num_rows($result) == 1) {
-            echo "Login Successfully";
-            // Redirect to dashboard
-            // header("Location: studentdashh.php");
+            // Store user information in the session if needed
+            $_SESSION['user'] = mysqli_fetch_assoc($result);
+            // Redirect to OTP verification page
+            header("Location: otp_verification.php");
             exit();
         } else {
             echo "Wrong Email or Password";
