@@ -25,10 +25,10 @@ function sendOTPEmail($email, $otp) {
     $mail = new PHPMailer(true);
     try {
         $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com'; // Update with your SMTP server
+        $mail->Host = ''; // Update with your SMTP server
         $mail->SMTPAuth = true;
-        $mail->Username = 'waay.dicta@gmail.com'; // Update with your SMTP username
-        $mail->Password = 'sszd dveb sufk kwum'; // Update with your SMTP password
+        $mail->Username = ''; // Update with your SMTP username
+        $mail->Password = ''; // Update with your SMTP password
         $mail->SMTPSecure = 'ssl'; // Use TLS encryption
         $mail->Port = 465; // Use the appropriate port
 

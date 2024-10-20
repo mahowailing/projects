@@ -42,6 +42,7 @@ use PHPMailer\PHPMailer\Exception;
 
                 $mail->send();
                 echo "<script>alert('OTP sent to email.');</script>";
+                
             } catch (Exception $e) {
                 echo "<script>alert('Message could not be sent. Mailer Error: {$mail->ErrorInfo}');</script>";
             }
