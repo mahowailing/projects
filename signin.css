@@ -26,17 +26,15 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #EDEADE;
-    background-size: cover; 
-    background-position: center; 
-}
+    background: rgb(40,122,238);
+    background: linear-gradient(90deg, rgba(40,122,238,1) 14%, rgba(49,199,224,1) 94%);
 
 .container {
     display: flex;
     width: 800px;
     height: 600px;
     background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
     opacity: .9;
 }
 
@@ -80,7 +78,7 @@ input {
 button {
     padding: 10px;
     font-size: 18px;
-    background-color: #007bff;
+    background-color: #47b2e4;
     color: white;
     border: none;
     border-radius: 5px;
