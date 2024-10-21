@@ -140,14 +140,16 @@ if (isset($_POST['send_otp'])) {
                 text-align: center;
             }
 
-            input[type="text"], input[type="email"], input[type="password"] {
+            input {
                 margin-bottom: 20px;
                 padding: 10px;
                 font-size: 16px;
                 border: 1px solid #ccc;
                 border-radius: 5px;
-                width: 100%;
+                width: 95%;
+                max-width: 600px;
             }
+
             button {
                 padding: 10px;
                 font-size: 18px;
@@ -163,11 +165,12 @@ if (isset($_POST['send_otp'])) {
                 background-color: #0056b3;
             }
 
-        img {
-            width: 400px;
-            height:400px;
-            padding-right:100px;
-        }
+            img {
+                width: 400px;
+                height:400px;
+                padding-right:100px;
+            }
+        
     </style>
 </head>
 <body>
@@ -177,7 +180,7 @@ if (isset($_POST['send_otp'])) {
         <form method="POST" action="verify_otp.php">
             <label for="otp">Enter OTP:</label>
             <input type="text" id="otp" name="otp" required>
-            <button type="submit">Verify OTP</button>
+            <button type="submit">Verify OTP</button><br><br>
         </form>
 
         <button onclick="sendOtp(event)">Send OTP</button> <!-- Button to send OTP -->
