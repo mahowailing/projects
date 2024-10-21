@@ -70,7 +70,7 @@ if (isset($_POST['send_otp'])) {
 
             // Send OTP to user's email
             if (sendOTPEmail($user['email'], $otp)) {
-                echo "OTP sent successfully.".$user['email'];
+                echo "OTP sent successfully.";
             } else {
                 echo "Failed to send OTP.";
             }
