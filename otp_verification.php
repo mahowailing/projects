@@ -70,7 +70,7 @@ if (isset($_POST['send_otp'])) {
 
             // Send OTP to user's email
             if (sendOTPEmail($user['email'], $otp)) {
-                echo "OTP sent successfully.".$user['email'];
+                echo "OTP sent successfully.";
             } else {
                 echo "Failed to send OTP.";
             }
@@ -88,7 +88,7 @@ if (isset($_POST['send_otp'])) {
 <html>
 <head>
     <title>OTP Verification</title>
-    <link rel="stylesheet" href="otp.css">
+    
     <script>
         function sendOtp(event) {
             event.preventDefault(); // Prevent the form from submitting
@@ -171,15 +171,6 @@ if (isset($_POST['send_otp'])) {
     </style>
 </head>
 <body>
-<<<<<<< HEAD
-    <div class="container">
-    <h2>OTP Verification</h2>
-    <form method="POST" action="verify_otp.php">
-        <label for="otp">Enter OTP:</label>
-        <input type="text" id="otp" name="otp" required>
-        <button type="submit">Verify OTP</button><br><br>
-    </form>
-=======
     <img src="computer.png">
     <div class="container">
         <h2>OTP Verification</h2>
@@ -188,7 +179,6 @@ if (isset($_POST['send_otp'])) {
             <input type="text" id="otp" name="otp" required>
             <button type="submit">Verify OTP</button>
         </form>
->>>>>>> 405f63082bff561eada4de3786f6027bd7a6f725
 
         <button onclick="sendOtp(event)">Send OTP</button> <!-- Button to send OTP -->
     </div>

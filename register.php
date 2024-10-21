@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // 7. Execute the query and check if the insertion was successful
     if (mysqli_query($con, $sql)) {
         echo "<script>alert('New user registered successfully!');</script>";
-        header("location: index.php");
+        header("Location: index.php");
     } else {
         echo "<script>alert('Error: " . $sql . "<br>" . mysqli_error($con) . "');</script>";
     }
