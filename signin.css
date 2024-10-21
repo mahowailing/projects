@@ -76,6 +76,7 @@ input {
 }
 
 button {
+    display: inline;
     padding: 10px;
     font-size: 18px;
     background-color: #47b2e4;

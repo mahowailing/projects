@@ -117,7 +117,7 @@ if (isset($_POST['send_otp'])) {
     <form method="POST" action="verify_otp.php">
         <label for="otp">Enter OTP:</label>
         <input type="text" id="otp" name="otp" required>
-        <button type="submit">Verify OTP</button>
+        <button type="submit">Verify OTP</button><br><br>
     </form>
 
     <button onclick="sendOtp(event)">Send OTP</button> <!-- Button to send OTP -->

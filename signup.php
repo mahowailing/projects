@@ -33,7 +33,7 @@
             <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm your password" required><br>
             <span id="mismatch-warning" class="mismatch-warning">Passwords do not match!</span>
 
-            <button id="submit-btn" type="submit">Sign Up</button>
+            <button id="submit-btn" type="submit">Sign Up</button><br><br>
         </form>
 
         <p>Already have an account? <a href="index.php">Sign in here</a></p>
