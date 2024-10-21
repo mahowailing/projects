@@ -20,10 +20,10 @@
         <div class="form-section">
             <h1>Sign In</h1>
             <form action="login_process.php" method="POST">
-                <label for="email">Email</label>
+                <label for="email" style="font-size: 14px;"><b>Email</b></label>
                 <input type="email" id="email" name="email" required>
 
-                <label for="password">Password</label>
+                <label for="password" style="font-size: 14px;"><b>Password</b></label>
                 <input type="password" id="password" name="password" required>
 
                 <button type="submit">Sign In</button>
@@ -33,5 +33,6 @@
             </div>
         </div>
     </div>
+    
 </body>
 </html>
