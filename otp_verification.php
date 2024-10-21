@@ -25,10 +25,10 @@ function sendOTPEmail($email, $otp) {
     $mail = new PHPMailer(true);
     try {
         $mail->isSMTP();
-        $mail->Host = ''; // Update with your SMTP server
+        $mail->Host = 'smtp.gmail.com'; // Update with your SMTP server
         $mail->SMTPAuth = true;
-        $mail->Username = ''; // Update with your SMTP username
-        $mail->Password = ''; // Update with your SMTP password
+        $mail->Username = 'waay.dicta@gmail.com'; // Update with your SMTP username
+        $mail->Password = 'sszd dveb sufk kwum'; // Update with your SMTP password
         $mail->SMTPSecure = 'ssl'; // Use TLS encryption
         $mail->Port = 465; // Use the appropriate port
 
@@ -70,7 +70,7 @@ if (isset($_POST['send_otp'])) {
 
             // Send OTP to user's email
             if (sendOTPEmail($user['email'], $otp)) {
-                echo "OTP sent successfully.";
+                echo "OTP sent successfully.".$user['email'];
             } else {
                 echo "Failed to send OTP.";
             }
@@ -110,15 +110,77 @@ if (isset($_POST['send_otp'])) {
             xhr.send('send_otp=true'); // Include the required data in the request
         }
     </script>
+    <style>
+       body {
+        margin: 0;
+        height:100vh;
+        display:flex;
+        justify-content: center;
+        align-items:center;
+        background: rgb(40,122,238);
+        background: linear-gradient(90deg, rgba(40,122,238,1) 14%, rgba(49,199,224,1) 94%);
+       }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            opacity: .9;
+            }
+
+            h2 {
+                text-align: center;
+                margin-bottom: 20px;
+                font-size: 32px;
+            }
+
+            p {
+                text-align: center;
+            }
+
+            input[type="text"], input[type="email"], input[type="password"] {
+                margin-bottom: 20px;
+                padding: 10px;
+                font-size: 16px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                width: 100%;
+            }
+            button {
+                padding: 10px;
+                font-size: 18px;
+                background-color: #47b2e4;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                width: 100%
+
+            }
+            button:hover {
+                background-color: #0056b3;
+            }
+
+        img {
+            width: 400px;
+            height:400px;
+            padding-right:100px;
+        }
+    </style>
 </head>
 <body>
-    <h2>OTP Verification</h2>
-    <form method="POST" action="verify_otp.php">
-        <label for="otp">Enter OTP:</label>
-        <input type="text" id="otp" name="otp" required>
-        <button type="submit">Verify OTP</button>
-    </form>
+    <img src="computer.png">
+    <div class="container">
+        <h2>OTP Verification</h2>
+        <form method="POST" action="verify_otp.php">
+            <label for="otp">Enter OTP:</label>
+            <input type="text" id="otp" name="otp" required>
+            <button type="submit">Verify OTP</button>
+        </form>
 
-    <button onclick="sendOtp(event)">Send OTP</button> <!-- Button to send OTP -->
+        <button onclick="sendOtp(event)">Send OTP</button> <!-- Button to send OTP -->
+    </div>
 </body>
 </html>

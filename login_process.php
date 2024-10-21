@@ -7,22 +7,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        // SQL query to fetch user with matching email and password
-        $sql = "SELECT * FROM users WHERE email LIKE '%$email%' AND password= '$password'";
-        $result = mysqli_query($con, $sql);
+        // Use a prepared statement to avoid SQL injection
+        $sql = "SELECT * FROM users WHERE email LIKE '%$email%'";
+        $stmt = $con->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-        if ($result === false) {
-            die('Query failed: ' . mysqli_error($con)); 
-        }
+        if ($result->num_rows == 1) {
+            $user = $result->fetch_assoc();
 
-        if (mysqli_num_rows($result) == 1) {
-            // Store user information in the session if needed
-            $_SESSION['user'] = mysqli_fetch_assoc($result);
-            // Redirect to OTP verification page
-            header("Location: otp_verification.php");
-            exit();
+            // Check if the password matches (assuming the password is not hashed)
+            if ($user['password'] === $password) {
+                // Store only user ID or email in the session
+                $_SESSION['user'] = $user['id']; // Store the user ID in session
+
+                // Redirect to OTP verification page
+                header("Location: otp_verification.php");
+                exit();
+            } else {
+                echo "Incorrect password.";
+            }
         } else {
-            echo "Wrong Email or Password";
+            echo "User not found with this email.";
         }
     }
 }

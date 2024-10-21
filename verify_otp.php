@@ -17,10 +17,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Compare the entered OTP with the stored OTP
             if ($enteredOtp === $storedOtp) {
                 // OTP is valid
-                echo "OTP verified successfully! You can proceed.";
-                // You may redirect the user to another page or perform other actions here
-                // header("Location: dashboard.php"); // Example of redirecting to dashboard
-                // exit();
+                echo "<script>alert('OTP verified successfully! You can proceed.');</script>";
+                header("Location: landingpage.html");
+                exit();
             } else {
                 // Invalid OTP
                 echo "Invalid OTP. Please try again.";
