@@ -24,12 +24,12 @@ use PHPMailer\PHPMailer\Exception;
             $mail = new PHPMailer(true);
             try {
                 $mail->isSMTP();
-                 $mail->Host = 'smtp.gmail.com'; // Mailjet SMTP server
+                 $mail->Host = 'smtp.gmail.com';
                  $mail->SMTPAuth = true;
-                 $mail->Username = 'waay.dicta@gmail.com'; // Mailjet API Key
-                 $mail->Password = 'sszd dveb sufk kwum'; // Mailjet API Secret
+                 $mail->Username = 'waay.dicta@gmail.com';
+                 $mail->Password = 'sszd dveb sufk kwum';
                  $mail->SMTPSecure = 'ssl';
-                 $mail->Port = 465; // Mailjet SMTP port                              // TCP port
+                 $mail->Port = 465; 
 
                 // Recipients
                 $mail->setFrom('your-email@yourdomain.com', 'Activity1');
