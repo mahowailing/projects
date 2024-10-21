@@ -15,21 +15,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($result->num_rows == 1) {
             $user = $result->fetch_assoc();
-
+        
             // Check if the password matches (assuming the password is not hashed)
             if ($user['password'] === $password) {
                 // Store only user ID or email in the session
                 $_SESSION['user'] = $user['id']; // Store the user ID in session
-
+        
                 // Redirect to OTP verification page
                 header("Location: otp_verification.php");
-                exit();
+                exit(); // Stop further execution after redirect
             } else {
-                echo "Incorrect password.";
+                echo '<script>
+                        alert("Incorrect Password!");
+                        window.location.href = "index.php";
+                      </script>';
+                exit(); // Stop further execution
             }
         } else {
-            echo "User not found with this email.";
+            echo '<script>
+                    alert("Email not Found!");
+                    window.location.href = "index.php";
+                  </script>';
+            exit(); // Stop further execution
         }
+        
     }
 }
 ?>
